@@ -1,0 +1,1 @@
+python run_summarization.py --mode=eval --data_path=/home/share/zh/corpus/PKU-Paraphrase-Bank-master/chunked/val_* --vocab_path=/home/share/zh/corpus/PKU-Paraphrase-Bank-master/vocab --log_root=logs --exp_name=pku_all_vocab

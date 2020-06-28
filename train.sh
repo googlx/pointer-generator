@@ -1,0 +1,1 @@
+python run_summarization.py --mode=train --data_path=/home/share/zh/corpus/PKU-Paraphrase-Bank-master/chunked/train_* --vocab_path=/home/share/zh/corpus/PKU-Paraphrase-Bank-master/vocab --log_root=logs --exp_name=pku_all_vocab --convert_to_coverage_model=False --coverage=True
