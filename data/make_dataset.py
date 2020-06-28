@@ -5,6 +5,8 @@ import struct
 import collections
 from tensorflow.core.example import example_pb2
 
+import thulac
+
 # 我们用这两个符号切分在.bin数据文件中的摘要句子
 SENTENCE_START = '<s>'
 SENTENCE_END = '</s>'
@@ -61,12 +63,14 @@ def write_to_bin(input_file, out_file, makevocab=False):
     if makevocab:
         vocab_counter = collections.Counter()
 
+    thu_cut = thulac.thulac(seg_only=True)
     with open(out_file, 'wb') as writer:
         # 读取输入的文本文件，使偶数行成为article，奇数行成为abstract（行号从0开始）
         lines = read_text_file(input_file)
         for i, new_line in enumerate(lines):
-            article = lines[i]
-            abstract = "%s %s %s" % (SENTENCE_START, lines[i], SENTENCE_END)
+            text = thu_cut.cut(lines[i], text=True)
+            article = text
+            abstract = "%s %s %s" % (SENTENCE_START, text, SENTENCE_END)
 
             # 写到tf.Example
             tf_example = example_pb2.Example()
